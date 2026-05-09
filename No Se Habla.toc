@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: No Se Habla
+## Notes: Filters non-Latin-script chat into clickable stubs. Hover to peek, click to reveal.
+## Version: 1.0
+## SavedVariables: NoSeHablaDB
+
+NoSeHabla.lua
