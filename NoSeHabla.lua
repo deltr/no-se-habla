@@ -362,9 +362,18 @@ local ENGLISH_MARKERS = {
     ["other"]=1, ["another"]=1, ["such"]=1, ["many"]=1, ["much"]=1, ["few"]=1,
     -- time / place adverbs
     ["here"]=1, ["there"]=1, ["now"]=1, ["then"]=1,
-    ["today"]=1, ["yesterday"]=1, ["tomorrow"]=1,
+    ["today"]=1, ["yesterday"]=1, ["tomorrow"]=1, ["tonight"]=1,
     ["just"]=1, ["only"]=1, ["also"]=1, ["too"]=1, ["very"]=1, ["really"]=1,
     ["always"]=1, ["never"]=1, ["sometimes"]=1, ["often"]=1,
+    ["daily"]=1, ["weekly"]=1, ["monthly"]=1, ["yearly"]=1, ["hourly"]=1,
+    ["early"]=1, ["late"]=1, ["later"]=1, ["soon"]=1,
+    -- days of week (distinctively English; every other language has its own)
+    ["monday"]=1, ["tuesday"]=1, ["wednesday"]=1, ["thursday"]=1,
+    ["friday"]=1, ["saturday"]=1, ["sunday"]=1,
+    -- time nouns
+    ["hour"]=1, ["hours"]=1, ["minute"]=1, ["minutes"]=1,
+    ["second"]=1, ["seconds"]=1, ["week"]=1, ["weeks"]=1,
+    ["month"]=1, ["months"]=1, ["year"]=1, ["years"]=1,
     -- comparison
     ["more"]=1, ["most"]=1, ["less"]=1, ["least"]=1, ["than"]=1,
     -- action verbs common in WoW raid-call / trade chat (English-distinctive;
@@ -384,6 +393,18 @@ local ENGLISH_MARKERS = {
     ["find"]=1, ["finds"]=1, ["found"]=1, ["finding"]=1,
     ["pick"]=1, ["picks"]=1, ["picked"]=1, ["picking"]=1,
     ["put"]=1, ["puts"]=1, ["putting"]=1,
+    ["run"]=1, ["runs"]=1, ["ran"]=1,
+    ["host"]=1, ["hosts"]=1, ["hosted"]=1, ["hosting"]=1,
+    ["clear"]=1, ["clears"]=1, ["cleared"]=1, ["clearing"]=1,
+    ["sign"]=1, ["signs"]=1, ["signed"]=1, ["signing"]=1,
+    ["meet"]=1, ["meets"]=1, ["met"]=1, ["meeting"]=1,
+    ["post"]=1, ["posts"]=1, ["posted"]=1, ["posting"]=1,
+    -- comparatives / superlatives (English -er/-est is highly distinctive)
+    ["fast"]=1, ["faster"]=1, ["fastest"]=1,
+    ["slow"]=1, ["slower"]=1, ["slowest"]=1,
+    ["bigger"]=1, ["biggest"]=1, ["smaller"]=1, ["smallest"]=1,
+    ["older"]=1, ["newer"]=1, ["newest"]=1, ["oldest"]=1,
+    ["better"]=1, ["worse"]=1, ["best"]=1, ["worst"]=1,
     -- common verbs (English-distinctive forms)
     ["get"]=1, ["got"]=1, ["gets"]=1, ["getting"]=1,
     ["want"]=1, ["wants"]=1, ["wanted"]=1, ["wanting"]=1,
