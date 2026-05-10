@@ -443,8 +443,16 @@ local ENGLISH_MARKERS = {
     ["lf"]=1, ["lfg"]=1, ["lfm"]=1, ["lf2m"]=1, ["lf3m"]=1, ["lf4m"]=1, ["lf5m"]=1,
     ["wts"]=1, ["wtb"]=1, ["wtt"]=1, ["wta"]=1,
     ["pst"]=1, ["afk"]=1, ["brb"]=1, ["gtg"]=1, ["bbl"]=1, ["ttyl"]=1, ["asap"]=1,
-    -- selective WoW jargon
+    -- selective WoW jargon. tank/dps/heal were originally excluded as
+    -- "universal loanwords," but the actually-reported foreign corpus on
+    -- Project Epoch never uses them, while English LFG calls collapse to
+    -- 0 markers without them. raid/raids stay excluded -- still risky.
     ["lvl"]=1, ["spec"]=1, ["specs"]=1,
+    ["tank"]=1, ["tanks"]=1, ["tanking"]=1,
+    ["dps"]=1,
+    ["heal"]=1, ["heals"]=1, ["healer"]=1, ["healers"]=1, ["healing"]=1,
+    ["spam"]=1, ["spamming"]=1, ["spammed"]=1,
+    ["boss"]=1, ["bosses"]=1,
     -- crafting verbs (distinctively English; foreign players use native verbs
     -- like "stworzyć"/"crear"/"sozdat" -- "craft" is an English-coded ask)
     ["craft"]=1, ["crafts"]=1, ["crafted"]=1, ["crafting"]=1,
