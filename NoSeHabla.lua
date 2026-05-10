@@ -150,8 +150,11 @@ local function strip_escapes(text)
 end
 
 -- Map UTF-8 accented Latin characters to ASCII so the dictionary lookup
--- catches both "también" and "tambien". Covers the common Romance + German set.
+-- catches both "también" and "tambien". Covers Latin-1 Supplement (Romance,
+-- German), Latin Extended-A (Polish, Czech, Slovak, Hungarian, Croatian,
+-- Romanian, Turkish, Baltic), and a few Latin Extended-B for Romanian.
 local ACCENT_MAP = {
+    -- 0xC3 prefix: Latin-1 Supplement (Romance + German)
     -- lowercase
     ["\195\160"]="a", ["\195\161"]="a", ["\195\162"]="a", ["\195\163"]="a", ["\195\164"]="a", ["\195\165"]="a",
     ["\195\168"]="e", ["\195\169"]="e", ["\195\170"]="e", ["\195\171"]="e",
@@ -166,10 +169,71 @@ local ACCENT_MAP = {
     ["\195\146"]="O", ["\195\147"]="O", ["\195\148"]="O", ["\195\149"]="O", ["\195\150"]="O",
     ["\195\153"]="U", ["\195\154"]="U", ["\195\155"]="U", ["\195\156"]="U",
     ["\195\145"]="N", ["\195\135"]="C", ["\195\157"]="Y",
+    -- 0xC4 prefix: Latin Extended-A (first half)
+    ["\196\128"]="A", ["\196\129"]="a",  -- Ā ā
+    ["\196\130"]="A", ["\196\131"]="a",  -- Ă ă (Romanian)
+    ["\196\132"]="A", ["\196\133"]="a",  -- Ą ą (Polish)
+    ["\196\134"]="C", ["\196\135"]="c",  -- Ć ć (Polish)
+    ["\196\136"]="C", ["\196\137"]="c",  -- Ĉ ĉ
+    ["\196\138"]="C", ["\196\139"]="c",  -- Ċ ċ
+    ["\196\140"]="C", ["\196\141"]="c",  -- Č č (Czech/Slovak)
+    ["\196\142"]="D", ["\196\143"]="d",  -- Ď ď (Czech)
+    ["\196\144"]="D", ["\196\145"]="d",  -- Đ đ (Croatian)
+    ["\196\146"]="E", ["\196\147"]="e",  -- Ē ē
+    ["\196\148"]="E", ["\196\149"]="e",  -- Ĕ ĕ
+    ["\196\150"]="E", ["\196\151"]="e",  -- Ė ė
+    ["\196\152"]="E", ["\196\153"]="e",  -- Ę ę (Polish)
+    ["\196\154"]="E", ["\196\155"]="e",  -- Ě ě (Czech)
+    ["\196\158"]="G", ["\196\159"]="g",  -- Ğ ğ (Turkish)
+    ["\196\168"]="I", ["\196\169"]="i",  -- Ĩ ĩ
+    ["\196\170"]="I", ["\196\171"]="i",  -- Ī ī
+    ["\196\172"]="I", ["\196\173"]="i",  -- Ĭ ĭ
+    ["\196\174"]="I", ["\196\175"]="i",  -- Į į (Lithuanian)
+    ["\196\176"]="I", ["\196\177"]="i",  -- İ ı (Turkish)
+    ["\196\182"]="K", ["\196\183"]="k",  -- Ķ ķ (Latvian)
+    ["\196\185"]="L", ["\196\186"]="l",  -- Ĺ ĺ
+    ["\196\187"]="L", ["\196\188"]="l",  -- Ļ ļ (Latvian)
+    ["\196\189"]="L", ["\196\190"]="l",  -- Ľ ľ (Slovak)
+    -- 0xC5 prefix: Latin Extended-A (second half)
+    ["\197\129"]="L", ["\197\130"]="l",  -- Ł ł (Polish)
+    ["\197\131"]="N", ["\197\132"]="n",  -- Ń ń (Polish)
+    ["\197\133"]="N", ["\197\134"]="n",  -- Ņ ņ (Latvian)
+    ["\197\135"]="N", ["\197\136"]="n",  -- Ň ň (Czech)
+    ["\197\140"]="O", ["\197\141"]="o",  -- Ō ō
+    ["\197\142"]="O", ["\197\143"]="o",  -- Ŏ ŏ
+    ["\197\144"]="O", ["\197\145"]="o",  -- Ő ő (Hungarian)
+    ["\197\148"]="R", ["\197\149"]="r",  -- Ŕ ŕ
+    ["\197\150"]="R", ["\197\151"]="r",  -- Ŗ ŗ
+    ["\197\152"]="R", ["\197\153"]="r",  -- Ř ř (Czech)
+    ["\197\154"]="S", ["\197\155"]="s",  -- Ś ś (Polish)
+    ["\197\156"]="S", ["\197\157"]="s",  -- Ŝ ŝ
+    ["\197\158"]="S", ["\197\159"]="s",  -- Ş ş (Turkish/Romanian)
+    ["\197\160"]="S", ["\197\161"]="s",  -- Š š (Czech)
+    ["\197\162"]="T", ["\197\163"]="t",  -- Ţ ţ (Romanian alt)
+    ["\197\164"]="T", ["\197\165"]="t",  -- Ť ť (Czech)
+    ["\197\168"]="U", ["\197\169"]="u",  -- Ũ ũ
+    ["\197\170"]="U", ["\197\171"]="u",  -- Ū ū (Latvian)
+    ["\197\172"]="U", ["\197\173"]="u",  -- Ŭ ŭ
+    ["\197\174"]="U", ["\197\175"]="u",  -- Ů ů (Czech)
+    ["\197\176"]="U", ["\197\177"]="u",  -- Ű ű (Hungarian)
+    ["\197\178"]="U", ["\197\179"]="u",  -- Ų ų (Lithuanian)
+    ["\197\180"]="W", ["\197\181"]="w",
+    ["\197\182"]="Y", ["\197\183"]="y",
+    ["\197\184"]="Y",
+    ["\197\185"]="Z", ["\197\186"]="z",  -- Ź ź (Polish)
+    ["\197\187"]="Z", ["\197\188"]="z",  -- Ż ż (Polish)
+    ["\197\189"]="Z", ["\197\190"]="z",  -- Ž ž (Czech/Slovak)
+    -- 0xC8 prefix: Latin Extended-B (Romanian comma-below s/t)
+    ["\200\152"]="S", ["\200\153"]="s",  -- Ș ș
+    ["\200\154"]="T", ["\200\155"]="t",  -- Ț ț
 }
 
 local function strip_accents(text)
-    return (string.gsub(text, "\195[\128-\191]", function(c) return ACCENT_MAP[c] or c end))
+    text = string.gsub(text, "\195[\128-\191]", function(c) return ACCENT_MAP[c] or c end)
+    text = string.gsub(text, "\196[\128-\191]", function(c) return ACCENT_MAP[c] or c end)
+    text = string.gsub(text, "\197[\128-\191]", function(c) return ACCENT_MAP[c] or c end)
+    text = string.gsub(text, "\200[\128-\191]", function(c) return ACCENT_MAP[c] or c end)
+    return text
 end
 
 -- Lowercase + accent-strip + escape-strip, so dictionary keys can be plain ASCII.
@@ -368,18 +432,29 @@ local ENGLISH_MIN_TOKENS = 7           -- only check messages with this many tok
 local ENGLISH_MIN_RATIO  = 10          -- percent of tokens that must be English markers
 
 -- Flag long messages that are conspicuously short on English function words.
--- Catches Spanish, Portuguese, Italian, French, German, Dutch, transliterated
--- Russian that slipped past detector 2, etc. -- without needing per-language lists.
+-- Catches Spanish, Portuguese, Italian, French, German, Dutch, Polish, Czech,
+-- transliterated Russian that slipped past detector 2, etc. -- without per-
+-- language lists.
+--
+-- The ratio is computed over 3+ char tokens only. Polish/Slavic function words
+-- like "to", "by", "my", "do", "na" coincide with English particles, so 1-2
+-- char tokens drive the ratio up artificially. Restricting to 3+ ignores that
+-- noise. The 7-token gate uses raw count, so short-token-heavy messages still
+-- qualify for inspection.
 local function is_low_english_density(text)
     if not text or text == "" then return false end
     local normalized = normalize_for_dict(text)
-    local total, hits = 0, 0
+    local total, long_total, hits = 0, 0, 0
     for word in string.gmatch(normalized, "[%a]+") do
         total = total + 1
-        if ENGLISH_MARKERS[word] then hits = hits + 1 end
+        if #word >= 3 then
+            long_total = long_total + 1
+            if ENGLISH_MARKERS[word] then hits = hits + 1 end
+        end
     end
     if total < ENGLISH_MIN_TOKENS then return false end
-    return (hits * 100 / total) < ENGLISH_MIN_RATIO
+    if long_total == 0 then return false end  -- can't determine; default to keep
+    return (hits * 100 / long_total) < ENGLISH_MIN_RATIO
 end
 
 ----------------------------------------------------------------------
