@@ -469,6 +469,21 @@ local ENGLISH_MARKERS = {
     -- profession abbreviations (3+ chars only -- the ratio function ignores
     -- 2-char tokens, so "bs"/"jc"/"lw" wouldn't help even if added)
     ["ench"]=1, ["alch"]=1,
+    -- WoW stat abbreviations -- same across languages (game UI is English)
+    -- but very dense in English crafting/enchant/gear ads
+    ["str"]=1, ["agi"]=1, ["int"]=1, ["sta"]=1, ["stam"]=1, ["spr"]=1, ["sprt"]=1,
+    ["spi"]=1, ["spirit"]=1,
+    ["crit"]=1, ["haste"]=1, ["dodge"]=1, ["parry"]=1, ["expertise"]=1, ["resil"]=1,
+    ["stats"]=1, ["stat"]=1, ["mana"]=1, ["mp"]=1,
+    ["dam"]=1, ["dmg"]=1, ["dps"]=1,
+    -- gear slot names
+    ["helm"]=1, ["chest"]=1, ["robe"]=1, ["cloak"]=1, ["back"]=1, ["wrist"]=1,
+    ["bracer"]=1, ["bracers"]=1, ["glove"]=1, ["gloves"]=1, ["belt"]=1, ["waist"]=1,
+    ["pants"]=1, ["legs"]=1, ["boots"]=1, ["trinket"]=1, ["trinkets"]=1,
+    ["mainhand"]=1, ["offhand"]=1, ["shield"]=1, ["weap"]=1,
+    -- common enchant / proc names (distinctively English compound words)
+    ["crusader"]=1, ["lifesteal"]=1, ["fiery"]=1, ["panacea"]=1, ["mongoose"]=1,
+    ["executioner"]=1, ["deathfrost"]=1, ["swash"]=1, ["unholy"]=1, ["arcane"]=1,
     -- chat slang / acknowledgements
     ["omg"]=1, ["lol"]=1, ["lmao"]=1, ["rofl"]=1, ["gg"]=1,
     ["btw"]=1, ["imo"]=1, ["imho"]=1, ["tbh"]=1, ["idk"]=1, ["idc"]=1,
