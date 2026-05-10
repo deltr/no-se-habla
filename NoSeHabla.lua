@@ -367,6 +367,23 @@ local ENGLISH_MARKERS = {
     ["always"]=1, ["never"]=1, ["sometimes"]=1, ["often"]=1,
     -- comparison
     ["more"]=1, ["most"]=1, ["less"]=1, ["least"]=1, ["than"]=1,
+    -- action verbs common in WoW raid-call / trade chat (English-distinctive;
+    -- foreign players use native verbs for these). Skipping universal WoW
+    -- loanwords (raiding/farming/grinding/killing/buffing) on purpose.
+    ["drop"]=1, ["drops"]=1, ["dropped"]=1, ["dropping"]=1,
+    ["bring"]=1, ["brings"]=1, ["brought"]=1, ["bringing"]=1,
+    ["send"]=1, ["sends"]=1, ["sent"]=1, ["sending"]=1,
+    ["wait"]=1, ["waits"]=1, ["waited"]=1, ["waiting"]=1,
+    ["start"]=1, ["starts"]=1, ["started"]=1, ["starting"]=1,
+    ["stop"]=1, ["stops"]=1, ["stopped"]=1, ["stopping"]=1,
+    ["finish"]=1, ["finishes"]=1, ["finished"]=1, ["finishing"]=1,
+    ["join"]=1, ["joins"]=1, ["joined"]=1, ["joining"]=1,
+    ["leave"]=1, ["leaves"]=1, ["left"]=1, ["leaving"]=1,
+    ["sell"]=1, ["sells"]=1, ["sold"]=1, ["selling"]=1,
+    ["buy"]=1, ["buys"]=1, ["bought"]=1, ["buying"]=1,
+    ["find"]=1, ["finds"]=1, ["found"]=1, ["finding"]=1,
+    ["pick"]=1, ["picks"]=1, ["picked"]=1, ["picking"]=1,
+    ["put"]=1, ["puts"]=1, ["putting"]=1,
     -- common verbs (English-distinctive forms)
     ["get"]=1, ["got"]=1, ["gets"]=1, ["getting"]=1,
     ["want"]=1, ["wants"]=1, ["wanted"]=1, ["wanting"]=1,
@@ -400,6 +417,13 @@ local ENGLISH_MARKERS = {
     ["good"]=1, ["bad"]=1, ["nice"]=1, ["cool"]=1, ["great"]=1, ["awesome"]=1,
     ["funny"]=1, ["weird"]=1, ["stupid"]=1, ["smart"]=1, ["dumb"]=1,
     ["huge"]=1, ["tiny"]=1, ["small"]=1, ["large"]=1, ["old"]=1, ["new"]=1,
+    ["insane"]=1, ["crazy"]=1, ["wild"]=1, ["sick"]=1, ["legit"]=1, ["decent"]=1,
+    ["sketchy"]=1, ["dope"]=1, ["lame"]=1,
+    -- English slang contractions
+    ["kinda"]=1, ["sorta"]=1, ["gonna"]=1, ["wanna"]=1, ["gotta"]=1, ["dunno"]=1,
+    ["yall"]=1, ["aint"]=1, ["lemme"]=1, ["gimme"]=1,
+    -- distinctively English nouns appearing in trade/chat banter
+    ["economy"]=1, ["market"]=1, ["price"]=1, ["prices"]=1,
     -- common verbs (more)
     ["talk"]=1, ["talks"]=1, ["talked"]=1, ["talking"]=1,
     ["say"]=1, ["says"]=1, ["said"]=1, ["saying"]=1,
