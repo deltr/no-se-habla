@@ -421,6 +421,22 @@ local ENGLISH_MARKERS = {
     ["pst"]=1, ["afk"]=1, ["brb"]=1, ["gtg"]=1, ["bbl"]=1, ["ttyl"]=1, ["asap"]=1,
     -- selective WoW jargon
     ["lvl"]=1, ["spec"]=1, ["specs"]=1,
+    -- crafting verbs (distinctively English; foreign players use native verbs
+    -- like "stworzyć"/"crear"/"sozdat" -- "craft" is an English-coded ask)
+    ["craft"]=1, ["crafts"]=1, ["crafted"]=1, ["crafting"]=1,
+    ["enchant"]=1, ["enchants"]=1, ["enchanted"]=1, ["enchanting"]=1,
+    ["create"]=1, ["creates"]=1, ["created"]=1, ["creating"]=1,
+    ["build"]=1, ["builds"]=1, ["built"]=1, ["building"]=1,
+    -- gear nouns (distinctively English spellings)
+    ["armor"]=1, ["armour"]=1, ["weapon"]=1, ["weapons"]=1,
+    -- profession names (distinctively English compound words)
+    ["blacksmith"]=1, ["tailor"]=1, ["enchanter"]=1, ["leatherworker"]=1,
+    ["jewelcrafter"]=1, ["alchemist"]=1, ["herbalist"]=1, ["skinner"]=1,
+    ["miner"]=1, ["fisher"]=1, ["fishing"]=1, ["mining"]=1, ["skinning"]=1,
+    ["smelting"]=1, ["forging"]=1, ["smithing"]=1,
+    -- profession abbreviations (3+ chars only -- the ratio function ignores
+    -- 2-char tokens, so "bs"/"jc"/"lw" wouldn't help even if added)
+    ["ench"]=1, ["alch"]=1,
     -- chat slang / acknowledgements
     ["omg"]=1, ["lol"]=1, ["lmao"]=1, ["rofl"]=1, ["gg"]=1,
     ["btw"]=1, ["imo"]=1, ["imho"]=1, ["tbh"]=1, ["idk"]=1, ["idc"]=1,
